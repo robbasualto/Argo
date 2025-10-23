@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: App-Argo-Workflows
+spec:
+  project: devops
+  source:
+    chart: argo
+    helm:
+    repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: v0.45.27
+    helm:
+      releaseName: argo-workflows
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: Argo-Workflows
