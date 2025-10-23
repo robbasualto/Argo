@@ -5,10 +5,10 @@ metadata:
 spec:
   project: default
   source:
-    chart: argo
+    chart: argo-workflows
     helm:
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: v3.7.3
+    targetRevision: v0.45.27
     helm:
       releaseName: argo-workflows
   syncPolicy:
