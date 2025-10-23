@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-devops
+  namespace: argocd
+  annotations:
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/robbasualto/Argo.git'
+    targetRevision: main
+    path: 'Apps/.' 
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      selfHeal: true

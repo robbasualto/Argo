@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: App-Argo-Workflows
 spec:
-  project: devops
+  project: default
   source:
     chart: argo
     helm:
