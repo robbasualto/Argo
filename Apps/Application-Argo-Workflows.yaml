@@ -8,7 +8,7 @@ spec:
     chart: argo
     helm:
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: v0.45.27
+    targetRevision: v3.7.3
     helm:
       releaseName: argo-workflows
   syncPolicy:
