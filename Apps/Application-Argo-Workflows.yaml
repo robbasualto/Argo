@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: App-Argo-Workflows
+  name: app-argo-workflows
 spec:
   project: default
   source:
