@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-argo-events
+spec:
+  project: default
+  source:
+    chart: argo-events
+    helm:
+    repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: v2.4.16
+    helm:
+      releaseName: argo-events
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: argo-events
