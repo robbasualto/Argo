@@ -2,19 +2,28 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: app-argo-workflows
+  namespace: argocd
 spec:
   project: default
-  source:
-    chart: argo-workflows
-    helm:
-    repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: v0.45.27
-    helm:
-      releaseName: argo-workflows
+  sources:
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-workflows  
+      targetRevision: v0.45.27
+      helm:
+        valueFiles:
+        - $values/Templates/argo-workflows/values.yaml
+        parameters:
+          - name: installCRDs
+            value: "true"
+    - repoURL: 'https://github.com/robbasualto/Argo.git'
+      path: 
+      targetRevision: main
+      ref: values
   syncPolicy:
     automated: {}
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argo-workflows
