@@ -11,7 +11,7 @@ spec:
       targetRevision: v0.45.27
       helm:
         valueFiles:
-        - $values/Templates/argo-workflows/values.yaml
+        - $values/values/Templates/argo-workflows/values.yaml
         parameters:
           - name: installCRDs
             value: "true"
