@@ -1,7 +1,7 @@
 image:
   repository: us-east4-docker.pkg.dev/poc-241224/poc/nodejs-dummy
   # tag: managed by argocd-image-updater
-  tag: "test-1773111108"
+  tag: "test-1773112984"
   pullPolicy: Always
 imagePullSecrets:
 - name: gar-pullsecret
