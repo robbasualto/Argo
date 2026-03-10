@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-argocd-image-updater
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argocd-image-updater
+      targetRevision: 1.1.1
+      helm:
+        valueFiles:
+          - $values/values/Templates/argocd-image-updater/values.yaml
+    - repoURL: 'https://github.com/robbasualto/Argo.git'
+      path:
+      targetRevision: main
+      ref: values
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: argocd
