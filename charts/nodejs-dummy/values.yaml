@@ -1,0 +1,14 @@
+replicaCount: 1
+
+image:
+  repository: us-east4-docker.pkg.dev/poc-241224/poc/nodejs-dummy
+  tag: ""
+  pullPolicy: Always
+
+imagePullSecrets: []
+
+service:
+  type: ClusterIP
+  port: 3000
+
+resources: {}

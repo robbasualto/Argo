@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-nodejs-dummy
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: 'https://github.com/robbasualto/Argo.git'
+      path: charts/nodejs-dummy
+      targetRevision: main
+      helm:
+        valueFiles:
+          - $values/values/Templates/nodejs-dummy/values.yaml
+    - repoURL: 'https://github.com/robbasualto/Argo.git'
+      path:
+      targetRevision: main
+      ref: values
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: nodejs-dummy
